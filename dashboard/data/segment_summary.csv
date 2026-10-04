@@ -1,0 +1,7 @@
+customer_segment,accounts,portfolio_share,average_days_to_activation,average_engaged_transactions,average_latest_balance_czk,negative_balance_accounts,problem_loan_accounts,segment_definition,recommended_action
+Light relationship,1964,0.4364,53.2,81.5,39589.5,0,0,Below-median engagement and no higher-priority relationship flag,Use onboarding education and low-friction activation nudges
+Core transactional,1357,0.3016,40.3,225.6,37826.8,0,0,Above-median engagement without a card or loan priority flag,Promote card adoption and additional account features
+Healthy borrower,525,0.1167,45.8,174.6,47966.1,0,0,Completed-good or active-good loan relationship,Offer relevant credit servicing and repayment reminders
+Card-led engaged,275,0.0611,49.2,211.0,64182.19,0,0,Cardholder with above-median engagement,Deepen card usage with merchant and recurring-payment offers
+High-value relationship,274,0.0609,42.3,301.9,83268.78,0,0,Top-quartile credit value ending balance and engagement,Protect service quality and test premium relationship benefits
+Risk watch,105,0.0233,57.7,169.2,22928.85,39,76,Negative balance or observed problem-loan status,Prioritise review repayment support and balance alerts

@@ -1,0 +1,36 @@
+[project]
+name = "novapay-fintech-analytics"
+version = "0.1.0"
+description = "End-to-end fintech analytics portfolio capstone"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "duckdb>=1.4,<2",
+  "jupyterlab>=4.4,<5",
+  "llvmlite>=0.44,<0.46",
+  "matplotlib>=3.10,<4",
+  "numba>=0.61,<0.63",
+  "numpy>=2.2,<3",
+  "pandas>=2.2,<3",
+  "pyarrow>=19,<24",
+  "scikit-learn>=1.6,<2",
+  "seaborn>=0.13,<1",
+  "shap>=0.47,<1",
+  "statsmodels>=0.14,<1",
+  "xgboost>=3,<4",
+]
+
+[dependency-groups]
+dev = [
+  "ipykernel>=6.29,<8",
+  "pytest>=8.3,<10",
+  "ruff>=0.11,<1",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

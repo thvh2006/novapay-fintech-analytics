@@ -1,0 +1,2 @@
+"""NovaPay analytics source package."""
+
