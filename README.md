@@ -4,6 +4,10 @@ An end-to-end fintech analytics case study built on 1,056,320 anonymised bank tr
 
 > **Portfolio note:** NovaPay is a fictional case-study company. The underlying records are the historical Berka/PKDD'99 Financial Dataset, not data from a real modern fintech.
 
+**[Open the interactive banking analytics cockpit](https://thvh2006.github.io/novapay-fintech-analytics/)** ·
+[Executive decision memo](reports/03_executive_decision_memo.md) ·
+[Download the Excel dashboard](dashboard/NovaPay_Banking_Analytics_Dashboard.xlsx)
+
 ![NovaPay executive dashboard](docs/images/dashboard.png)
 
 ## Business problem
