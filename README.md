@@ -1,5 +1,7 @@
 # NovaPay Banking Analytics
 
+[![CI](https://github.com/thvh2006/novapay-fintech-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/thvh2006/novapay-fintech-analytics/actions/workflows/ci.yml)
+
 An end-to-end fintech analytics case study built on 1,056,320 anonymised bank transactions. It turns raw relational data into tested DuckDB models, behavioural customer segments, an executive Excel dashboard, and business recommendations.
 
 > **Portfolio note:** NovaPay is a fictional case-study company. The underlying records are the historical Berka/PKDD'99 Financial Dataset, not data from a real modern fintech.
@@ -31,6 +33,18 @@ This project answers four questions:
 | Observed problem-loan rate | 11.1% | Maintain a dedicated review path for delinquent/defaulted loans |
 | Light-relationship segment | 1,964 accounts (43.6%) | Prioritise activation education and low-friction engagement nudges |
 | Risk-watch segment | 105 accounts (2.3%) | Review balances and repayment support before cross-selling |
+
+## Loan-risk research baseline
+
+The repository now includes a deliberately modest predictive extension: a regularised logistic baseline trained only on information available before loan origination. Transaction aggregates stop strictly before `loan_date`; development, probability-calibration, and locked out-of-time windows are chronological and keep whole dates together.
+
+| Window | Loans | Positive labels | Problem rate | Average precision | ROC-AUC | Brier |
+|---|---:|---:|---:|---:|---:|---:|
+| Development | 399 | 54 | 13.53% | 0.518 | 0.844 | 0.0928 |
+| Calibration | 142 | 19 | 13.38% | 0.819 | 0.922 | 0.0525 |
+| Locked OOT | 141 | **3** | **2.13%** | 0.618 | 0.966 | 0.0272 |
+
+The high locked-OOT ranking scores are **not a deployment claim**: only three positive labels remain and the label rate falls by 84% versus development. The source does not expose an outcome-maturity timestamp, so genuine regime change cannot be separated from right-censoring. The model therefore remains a research baseline; it is useful for demonstrating point-in-time feature engineering and validation discipline, not for automated credit decisions. See [the temporal validation note](reports/04_loan_risk_validation.md).
 
 ## Customer segmentation
 
@@ -67,6 +81,8 @@ flowchart LR
     D --> E[Activation and engagement]
     D --> F[Account 360 and segmentation]
     D --> G[Loan portfolio]
+    G --> K[Point-in-time loan features]
+    K --> L[Temporal logistic baseline]
     E --> H[CSV dashboard layer]
     F --> H
     G --> H
@@ -84,6 +100,8 @@ reports/                   EDA notes, segmentation analysis, executive memo
 sql/marts/                 account, activation, engagement, risk, and segment marts
 src/ingestion/             raw-to-DuckDB and mart build pipelines
 src/features/              reproducible dashboard exports
+src/models/                temporal loan-risk baseline and calibration
+src/validation/            reusable grain and point-in-time contracts
 tests/                     source, grain, metric, and segmentation checks
 ```
 
@@ -109,6 +127,7 @@ Raw source files and the generated DuckDB database are ignored by Git. Follow [`
 - `reports/01_eda_findings.md` — metric risks and exploratory findings.
 - `reports/02_customer_segmentation.md` — methodology, validation, and segment actions.
 - `reports/03_executive_decision_memo.md` — concise leadership recommendations.
+- `reports/04_loan_risk_validation.md` — temporal model design, results, and validity limits.
 - `docs/metric_dictionary.md` — auditable business definitions.
 
 ## Limitations
@@ -117,11 +136,12 @@ Raw source files and the generated DuckDB database are ignored by Git. Follow [`
 - No new account openings appear in 1998, so acquisition conclusions use 1993–1997.
 - Ledger records do not include app sessions, marketing exposure, revenue, or experiment assignment.
 - The segmentation is descriptive and action-oriented; it is not a causal model or credit decision system.
+- The loan model's locked OOT window has only three positive outcomes and a major label-rate shift; its ranking metrics are unstable and cannot establish production readiness.
 - Churn, fraud detection, and A/B testing are intentionally excluded because the source cannot support credible labels.
 
 ## Technology
 
-Python · SQL · DuckDB · pytest · Ruff · Excel
+Python · SQL · DuckDB · scikit-learn · pytest · Ruff · GitHub Actions · Excel
 
 ## Data source
 

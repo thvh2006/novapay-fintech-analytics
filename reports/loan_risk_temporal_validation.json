@@ -1,0 +1,54 @@
+{
+  "label": "source status B or D; historical observed outcome, not regulatory default",
+  "development_end": "1997-05-22",
+  "calibration_end": "1998-01-23",
+  "features": [
+    "loan_amount_czk",
+    "duration_months",
+    "monthly_payment_czk",
+    "account_tenure_days",
+    "prior_transaction_count",
+    "prior_credit_czk",
+    "prior_debit_czk",
+    "prior_net_flow_czk",
+    "prior_latest_balance_czk",
+    "prior_min_balance_czk",
+    "prior_active_days",
+    "average_salary_czk",
+    "unemployment_rate_1996",
+    "statement_frequency",
+    "region_name"
+  ],
+  "probability_calibration": "Platt scaling fitted only on the later calibration window",
+  "metrics": [
+    {
+      "partition": "development",
+      "rows": 399,
+      "positive_labels": 54,
+      "problem_rate": 0.13533834586466165,
+      "average_precision": 0.5182839602237351,
+      "roc_auc": 0.8444444444444444,
+      "brier_score": 0.09284779944334952
+    },
+    {
+      "partition": "calibration",
+      "rows": 142,
+      "positive_labels": 19,
+      "problem_rate": 0.13380281690140844,
+      "average_precision": 0.819140001272965,
+      "roc_auc": 0.922122379118528,
+      "brier_score": 0.05254628518219767
+    },
+    {
+      "partition": "oot",
+      "rows": 141,
+      "positive_labels": 3,
+      "problem_rate": 0.02127659574468085,
+      "average_precision": 0.6180555555555556,
+      "roc_auc": 0.9661835748792271,
+      "brier_score": 0.02723438592063376
+    }
+  ],
+  "validity_warning": "Locked OOT contains only three positive labels and a sharply lower outcome rate; ranking metrics are unstable and outcome maturity or regime change cannot be separated.",
+  "decision": "research baseline only; do not use for automated credit decisions"
+}
