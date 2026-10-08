@@ -20,6 +20,6 @@ jobs:
       - name: Install test dependencies
         run: python -m pip install duckdb numpy pandas scikit-learn pytest ruff
       - name: Run clean-room tests
-        run: pytest -q
+        run: PYTHONPATH=. pytest -q
       - name: Lint Python
         run: ruff check .
