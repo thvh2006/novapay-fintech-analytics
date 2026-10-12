@@ -10,6 +10,12 @@ An end-to-end fintech analytics case study built on 1,056,320 anonymised bank tr
 [Executive decision memo](reports/03_executive_decision_memo.md) ·
 [Download the Excel dashboard](dashboard/NovaPay_Banking_Analytics_Dashboard.xlsx)
 
+## Start here
+
+- [Executed research walkthrough](notebooks/01_research_walkthrough.ipynb) — SQL marts, segmentation logic, and point-in-time loan features
+- [Feature provenance](docs/feature_provenance.md) — raw source, transformation, origination cutoff, proxy risk, and validation
+- [Machine-readable feature register](reports/feature_provenance.csv)
+
 ![NovaPay executive dashboard](docs/images/dashboard.png)
 
 ## Business problem

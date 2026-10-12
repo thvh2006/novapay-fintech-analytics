@@ -1,0 +1,16 @@
+feature_name,feature_family,raw_source,grain,transformation,observation_cutoff,available_at_decision,fit_partition,missing_treatment,model_role,exclusion_reason,leakage_risk,proxy_or_fairness_risk,validation
+loan_amount_czk,loan terms,loans.loan_amount_czk,loan,Raw origination amount,loan_date,yes,none,median,model,,low,credit amount may reflect prior underwriting,temporal OOT
+duration_months,loan terms,loans.duration_months,loan,Raw term,loan_date,yes,none,median,model,,low,may encode policy,temporal OOT
+monthly_payment_czk,loan terms,loans.monthly_payment_czk,loan,Raw scheduled payment,loan_date,yes,none,median,model,,low,affordability proxy,temporal OOT
+account_tenure_days,relationship,accounts.opened_date,loan,loan_date - opened_date,loan_date,yes,none,median,model,,low,tenure may proxy customer age/access,point-in-time contract
+prior_transaction_count,past behaviour,transactions,loan,Count transactions where transaction_date < loan_date,strictly before loan_date,yes,none,median,model,,low,relationship-depth proxy,point-in-time contract
+prior_credit_czk,past behaviour,transactions,loan,Sum prior credits,strictly before loan_date,yes,none,zero,model,,low,income proxy,point-in-time contract
+prior_debit_czk,past behaviour,transactions,loan,Sum prior debits,strictly before loan_date,yes,none,zero,model,,low,spend proxy,point-in-time contract
+prior_net_flow_czk,past behaviour,transactions,loan,Prior credits minus prior debits,strictly before loan_date,yes,none,zero,model,,low,income/spend proxy,point-in-time contract
+prior_latest_balance_czk,past balance,transactions.balance_czk,loan,Balance from latest strictly prior transaction,strictly before loan_date,yes,none,median,model,,low,wealth proxy,point-in-time contract
+prior_min_balance_czk,past balance,transactions.balance_czk,loan,Minimum strictly prior balance,strictly before loan_date,yes,none,median,model,,low,financial distress proxy,point-in-time contract
+prior_active_days,past behaviour,transactions.transaction_date,loan,Distinct active days before origination,strictly before loan_date,yes,none,median,model,,low,relationship depth,point-in-time contract
+statement_frequency,account,accounts.statement_frequency,loan,Cleaned category,loan_date,yes,development,most frequent/unknown,model,,low,service choice proxy,unseen-category handling
+region_name,district context,districts.region_name,loan,Raw region category,loan_date,yes,development,most frequent/unknown,model,,medium,geography proxy/fairness risk,research-only limitation
+average_salary_czk,district context,districts.average_salary_czk,loan,Raw district statistic,loan_date,yes,none,median,model,,medium,socioeconomic/geographic proxy,research-only limitation
+unemployment_rate_1996,district context,districts.unemployment_rate_1996,loan,Raw district statistic,loan_date,yes,none,median,model,,medium,socioeconomic/geographic proxy,research-only limitation
