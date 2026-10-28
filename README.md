@@ -12,7 +12,7 @@ An end-to-end fintech analytics case study built on 1,056,320 anonymised bank tr
 
 ## Start here
 
-- [Executed research walkthrough](notebooks/01_research_walkthrough.ipynb) — SQL marts, segmentation logic, and point-in-time loan features
+- [Deep executed research walkthrough](notebooks/01_research_walkthrough.ipynb) — evidence receipt, data-quality diagnostics, segmentation, point-in-time loan validation, charts, decision gates, and limitations
 - [Feature provenance](docs/feature_provenance.md) — raw source, transformation, origination cutoff, proxy risk, and validation
 - [Machine-readable feature register](reports/feature_provenance.csv)
 
